@@ -93,7 +93,7 @@
 // affine and projective cakes and eat both of them too.
 #![allow(non_snake_case)]
 
-mod affine;
+pub mod affine;
 
 use cfg_if::cfg_if;
 use core::array::TryFromSliceError;
