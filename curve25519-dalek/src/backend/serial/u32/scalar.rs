@@ -201,7 +201,7 @@ impl Scalar29 {
         difference
     }
 
-    pub(crate) fn conditional_add_l(&mut self, condition: Choice) -> u32 {
+    pub fn conditional_add_l(&mut self, condition: Choice) -> u32 {
         let mut carry: u32 = 0;
         let mask = (1u32 << 29) - 1;
 
@@ -215,7 +215,7 @@ impl Scalar29 {
 
     /// Compute a raw in-place carrying right shift over the limbs.
     #[inline(always)]
-    pub(crate) fn shr1_assign(&mut self) -> u32 {
+    pub fn shr1_assign(&mut self) -> u32 {
         let mut carry: u32 = 0;
         for i in (0..9).rev() {
             let limb = self[i];

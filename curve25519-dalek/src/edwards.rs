@@ -388,10 +388,10 @@ impl<'de> Deserialize<'de> for CompressedEdwardsY {
 #[derive(Copy, Clone)]
 #[allow(missing_docs)]
 pub struct EdwardsPoint {
-    pub(crate) X: FieldElement,
-    pub(crate) Y: FieldElement,
-    pub(crate) Z: FieldElement,
-    pub(crate) T: FieldElement,
+    pub X: FieldElement,
+    pub Y: FieldElement,
+    pub Z: FieldElement,
+    pub T: FieldElement,
 }
 
 // ------------------------------------------------------------------------
@@ -525,7 +525,7 @@ impl Eq for EdwardsPoint {}
 
 impl EdwardsPoint {
     /// Convert to a ProjectiveNielsPoint
-    pub(crate) fn as_projective_niels(&self) -> ProjectiveNielsPoint {
+    pub fn as_projective_niels(&self) -> ProjectiveNielsPoint {
         ProjectiveNielsPoint {
             Y_plus_X: &self.Y + &self.X,
             Y_minus_X: &self.Y - &self.X,
@@ -538,7 +538,7 @@ impl EdwardsPoint {
     /// coordinates to projective coordinates.
     ///
     /// Free.
-    pub(crate) const fn as_projective(&self) -> ProjectivePoint {
+    pub const fn as_projective(&self) -> ProjectivePoint {
         ProjectivePoint {
             X: self.X,
             Y: self.Y,
@@ -548,7 +548,7 @@ impl EdwardsPoint {
 
     /// Dehomogenize to a `AffineNielsPoint`.
     /// Mainly for testing.
-    pub(crate) fn as_affine_niels(&self) -> AffineNielsPoint {
+    pub fn as_affine_niels(&self) -> AffineNielsPoint {
         let recip = self.Z.invert();
         let x = &self.X * &recip;
         let y = &self.Y * &recip;
@@ -561,7 +561,7 @@ impl EdwardsPoint {
     }
 
     /// Dehomogenize to `AffinePoint`.
-    pub(crate) fn to_affine(self) -> AffinePoint {
+    pub fn to_affine(self) -> AffinePoint {
         let recip = self.Z.invert();
         let x = &self.X * &recip;
         let y = &self.Y * &recip;
@@ -783,7 +783,7 @@ impl EdwardsPoint {
 
 impl EdwardsPoint {
     /// Add this point to itself.
-    pub(crate) fn double(&self) -> EdwardsPoint {
+    pub fn double(&self) -> EdwardsPoint {
         self.as_projective().double().as_extended()
     }
 }
@@ -1122,7 +1122,7 @@ macro_rules! impl_basepoint_table {
         /// add the carry bit onto an additional coefficient.
         #[derive(Clone)]
         #[repr(transparent)]
-        pub struct $name(pub(crate) [$table<AffineNielsPoint>; 32]);
+        pub struct $name(pub [$table<AffineNielsPoint>; 32]);
 
         impl BasepointTable for $name {
             type Point = $point;
@@ -1367,7 +1367,7 @@ impl EdwardsPoint {
     }
 
     /// Compute \\([2\^k] P \\) by successive doublings. Requires \\( k > 0 \\).
-    pub(crate) fn mul_by_pow_2(&self, k: u32) -> EdwardsPoint {
+    pub fn mul_by_pow_2(&self, k: u32) -> EdwardsPoint {
         debug_assert!(k > 0);
         let mut r: CompletedPoint;
         let mut s = self.as_projective();

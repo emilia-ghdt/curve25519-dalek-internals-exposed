@@ -11,10 +11,10 @@
 
 #![doc = include_str!("../../../docs/avx2-notes.md")]
 
-pub(crate) mod field;
+pub mod field;
 
-pub(crate) mod edwards;
+pub mod edwards;
 
-pub(crate) mod constants;
+pub mod constants;
 
-pub(crate) use self::edwards::{CachedPoint, ExtendedPoint};
+pub use self::edwards::{CachedPoint, ExtendedPoint};

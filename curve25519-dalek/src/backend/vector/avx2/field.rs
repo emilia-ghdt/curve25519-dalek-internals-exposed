@@ -155,7 +155,7 @@ pub enum Shuffle {
 /// the post-conditions of one operation are compatible with the
 /// pre-conditions of the next.
 #[derive(Clone, Copy, Debug)]
-pub struct FieldElement2625x4(pub(crate) [u32x8; 5]);
+pub struct FieldElement2625x4(pub [u32x8; 5]);
 
 use subtle::Choice;
 use subtle::ConditionallySelectable;

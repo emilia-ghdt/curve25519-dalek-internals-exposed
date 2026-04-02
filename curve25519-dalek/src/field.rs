@@ -53,7 +53,7 @@ cfg_if! {
         ///
         /// Using formally-verified field arithmetic from fiat-crypto.
         #[cfg(curve25519_dalek_bits = "32")]
-        pub(crate) type FieldElement = backend::serial::fiat_u32::field::FieldElement2625;
+        pub type FieldElement = backend::serial::fiat_u32::field::FieldElement2625;
 
         /// A `FieldElement` represents an element of the field
         /// \\( \mathbb Z / (2\^{255} - 19)\\).
@@ -63,21 +63,21 @@ cfg_if! {
         ///
         /// Using formally-verified field arithmetic from fiat-crypto.
         #[cfg(curve25519_dalek_bits = "64")]
-        pub(crate) type FieldElement = backend::serial::fiat_u64::field::FieldElement51;
+        pub type FieldElement = backend::serial::fiat_u64::field::FieldElement51;
     } else if #[cfg(curve25519_dalek_bits = "64")] {
         /// A `FieldElement` represents an element of the field
         /// \\( \mathbb Z / (2\^{255} - 19)\\).
         ///
         /// The `FieldElement` type is an alias for one of the platform-specific
         /// implementations.
-        pub(crate) type FieldElement = backend::serial::u64::field::FieldElement51;
+        pub type FieldElement = backend::serial::u64::field::FieldElement51;
     } else {
         /// A `FieldElement` represents an element of the field
         /// \\( \mathbb Z / (2\^{255} - 19)\\).
         ///
         /// The `FieldElement` type is an alias for one of the platform-specific
         /// implementations.
-        pub(crate) type FieldElement = backend::serial::u32::field::FieldElement2625;
+        pub type FieldElement = backend::serial::u32::field::FieldElement2625;
     }
 }
 
@@ -107,7 +107,7 @@ impl Default for FieldElement {
 impl FieldElement {
     /// Load a `FieldElement` from 64 bytes, by reducing modulo q.
     #[cfg(feature = "digest")]
-    pub(crate) fn from_bytes_wide(bytes: &[u8; 64]) -> Self {
+    pub fn from_bytes_wide(bytes: &[u8; 64]) -> Self {
         let mut fl = [0u8; 32];
         let mut gl = [0u8; 32];
         fl.copy_from_slice(&bytes[..32]);
@@ -153,7 +153,7 @@ impl FieldElement {
     /// # Return
     ///
     /// If negative, return `Choice(1)`.  Otherwise, return `Choice(0)`.
-    pub(crate) fn is_negative(&self) -> Choice {
+    pub fn is_negative(&self) -> Choice {
         let bytes = self.to_bytes();
         (bytes[0] & 1).into()
     }
@@ -163,7 +163,7 @@ impl FieldElement {
     /// # Return
     ///
     /// If zero, return `Choice(1)`.  Otherwise, return `Choice(0)`.
-    pub(crate) fn is_zero(&self) -> Choice {
+    pub fn is_zero(&self) -> Choice {
         let zero = [0u8; 32];
         let bytes = self.to_bytes();
 
@@ -209,27 +209,27 @@ impl FieldElement {
         (t19, t3)
     }
 
-    /// Given a slice of pub(crate)lic `FieldElements`, replace each with its inverse.
+    /// Given a slice of public `FieldElements`, replace each with its inverse.
     ///
     /// When an input `FieldElement` is zero, its value is unchanged.
-    pub(crate) fn invert_batch<const N: usize>(inputs: &mut [FieldElement; N]) {
+    pub fn invert_batch<const N: usize>(inputs: &mut [FieldElement; N]) {
         let mut scratch = [FieldElement::ONE; N];
 
         Self::internal_invert_batch(inputs, &mut scratch);
     }
 
-    /// Given a slice of pub(crate)lic `FieldElements`, replace each with its inverse.
+    /// Given a slice of public `FieldElements`, replace each with its inverse.
     ///
     /// When an input `FieldElement` is zero, its value is unchanged.
     #[cfg(feature = "alloc")]
-    pub(crate) fn invert_batch_alloc(inputs: &mut [FieldElement]) {
+    pub fn invert_batch_alloc(inputs: &mut [FieldElement]) {
         let n = inputs.len();
         let mut scratch = vec![FieldElement::ONE; n];
 
         Self::internal_invert_batch(inputs, &mut scratch);
     }
 
-    /// Given a slice of pub(crate)lic `FieldElements`, replace each with its inverse. `scratch` can
+    /// Given a slice of public `FieldElements`, replace each with its inverse. `scratch` can
     /// contain anything, so long as its length is the same as `inputs`.
     ///
     /// When an input `FieldElement` is zero, its value is unchanged.
@@ -280,7 +280,7 @@ impl FieldElement {
     /// This function returns zero on input zero.
     #[rustfmt::skip] // keep alignment of explanatory comments
     #[allow(clippy::let_and_return)]
-    pub(crate) fn invert(&self) -> FieldElement {
+    pub fn invert(&self) -> FieldElement {
         // The bits of p-2 = 2^255 -19 -2 are 11010111111...11.
         //
         //                                 nonzero bits of exponent
@@ -294,7 +294,7 @@ impl FieldElement {
     /// Raise this field element to the power (p-5)/8 = 2^252 -3.
     #[rustfmt::skip] // keep alignment of explanatory comments
     #[allow(clippy::let_and_return)]
-    pub(crate) fn pow_p58(&self) -> FieldElement {
+    pub fn pow_p58(&self) -> FieldElement {
         // The bits of (p-5)/8 are 101111.....11.
         //
         //                                 nonzero bits of exponent
@@ -317,7 +317,7 @@ impl FieldElement {
     /// - `(Choice(0), zero)        ` if `v` is zero and `u` is nonzero;
     /// - `(Choice(0), +sqrt(i*u/v))` if `u/v` is nonsquare (so `i*u/v` is square).
     ///
-    pub(crate) fn sqrt_ratio_i(u: &FieldElement, v: &FieldElement) -> (Choice, FieldElement) {
+    pub fn sqrt_ratio_i(u: &FieldElement, v: &FieldElement) -> (Choice, FieldElement) {
         // Using the same trick as in ed25519 decoding, we merge the
         // inversion, the square root, and the square test as follows.
         //
@@ -377,7 +377,7 @@ impl FieldElement {
     /// - `(Choice(0), zero)           ` if `self` is zero;
     /// - `(Choice(0), +sqrt(i/self))  ` if `self` is a nonzero nonsquare;
     ///
-    pub(crate) fn invsqrt(&self) -> (Choice, FieldElement) {
+    pub fn invsqrt(&self) -> (Choice, FieldElement) {
         FieldElement::sqrt_ratio_i(&FieldElement::ONE, self)
     }
 

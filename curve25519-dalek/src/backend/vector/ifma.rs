@@ -17,4 +17,4 @@ pub mod edwards;
 
 pub mod constants;
 
-pub(crate) use self::edwards::{CachedPoint, ExtendedPoint};
+pub use self::edwards::{CachedPoint, ExtendedPoint};

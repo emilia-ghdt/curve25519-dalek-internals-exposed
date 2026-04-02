@@ -23,7 +23,7 @@ use crate::{
 };
 
 /// The value of minus one, equal to `-&FieldElement::ONE`
-pub(crate) const MINUS_ONE: FieldElement51 = FieldElement51::from_limbs([
+pub const MINUS_ONE: FieldElement51 = FieldElement51::from_limbs([
     2251799813685228,
     2251799813685247,
     2251799813685247,
@@ -33,7 +33,7 @@ pub(crate) const MINUS_ONE: FieldElement51 = FieldElement51::from_limbs([
 
 /// sqrt(-486664)
 #[cfg(feature = "digest")]
-pub(crate) const ED25519_SQRTAM2: FieldElement51 = FieldElement51::from_limbs([
+pub const ED25519_SQRTAM2: FieldElement51 = FieldElement51::from_limbs([
     1693982333959686,
     608509411481997,
     2235573344831311,
@@ -42,7 +42,7 @@ pub(crate) const ED25519_SQRTAM2: FieldElement51 = FieldElement51::from_limbs([
 ]);
 
 /// Edwards `d` value, equal to `-121665/121666 mod p`.
-pub(crate) const EDWARDS_D: FieldElement51 = FieldElement51::from_limbs([
+pub const EDWARDS_D: FieldElement51 = FieldElement51::from_limbs([
     929955233495203,
     466365720129213,
     1662059464998953,
@@ -51,7 +51,7 @@ pub(crate) const EDWARDS_D: FieldElement51 = FieldElement51::from_limbs([
 ]);
 
 /// Edwards `2*d` value, equal to `2*(-121665/121666) mod p`.
-pub(crate) const EDWARDS_D2: FieldElement51 = FieldElement51::from_limbs([
+pub const EDWARDS_D2: FieldElement51 = FieldElement51::from_limbs([
     1859910466990425,
     932731440258426,
     1072319116312658,
@@ -60,7 +60,7 @@ pub(crate) const EDWARDS_D2: FieldElement51 = FieldElement51::from_limbs([
 ]);
 
 /// One minus edwards `d` value squared, equal to `(1 - (-121665/121666) mod p) pow 2`
-pub(crate) const ONE_MINUS_EDWARDS_D_SQUARED: FieldElement51 = FieldElement51::from_limbs([
+pub const ONE_MINUS_EDWARDS_D_SQUARED: FieldElement51 = FieldElement51::from_limbs([
     1136626929484150,
     1998550399581263,
     496427632559748,
@@ -69,7 +69,7 @@ pub(crate) const ONE_MINUS_EDWARDS_D_SQUARED: FieldElement51 = FieldElement51::f
 ]);
 
 /// Edwards `d` value minus one squared, equal to `(((-121665/121666) mod p) - 1) pow 2`
-pub(crate) const EDWARDS_D_MINUS_ONE_SQUARED: FieldElement51 = FieldElement51::from_limbs([
+pub const EDWARDS_D_MINUS_ONE_SQUARED: FieldElement51 = FieldElement51::from_limbs([
     1507062230895904,
     1572317787530805,
     683053064812840,
@@ -78,7 +78,7 @@ pub(crate) const EDWARDS_D_MINUS_ONE_SQUARED: FieldElement51 = FieldElement51::f
 ]);
 
 /// `= sqrt(a*d - 1)`, where `a = -1 (mod p)`, `d` are the Edwards curve parameters.
-pub(crate) const SQRT_AD_MINUS_ONE: FieldElement51 = FieldElement51::from_limbs([
+pub const SQRT_AD_MINUS_ONE: FieldElement51 = FieldElement51::from_limbs([
     2241493124984347,
     425987919032274,
     2207028919301688,
@@ -87,7 +87,7 @@ pub(crate) const SQRT_AD_MINUS_ONE: FieldElement51 = FieldElement51::from_limbs(
 ]);
 
 /// `= 1/sqrt(a-d)`, where `a = -1 (mod p)`, `d` are the Edwards curve parameters.
-pub(crate) const INVSQRT_A_MINUS_D: FieldElement51 = FieldElement51::from_limbs([
+pub const INVSQRT_A_MINUS_D: FieldElement51 = FieldElement51::from_limbs([
     278908739862762,
     821645201101625,
     8113234426968,
@@ -96,7 +96,7 @@ pub(crate) const INVSQRT_A_MINUS_D: FieldElement51 = FieldElement51::from_limbs(
 ]);
 
 /// Precomputed value of one of the square roots of -1 (mod p)
-pub(crate) const SQRT_M1: FieldElement51 = FieldElement51::from_limbs([
+pub const SQRT_M1: FieldElement51 = FieldElement51::from_limbs([
     1718705420411056,
     234908883556509,
     2233514472574048,
@@ -105,19 +105,19 @@ pub(crate) const SQRT_M1: FieldElement51 = FieldElement51::from_limbs([
 ]);
 
 /// `APLUS2_OVER_FOUR` is (A+2)/4. (This is used internally within the Montgomery ladder.)
-pub(crate) const APLUS2_OVER_FOUR: FieldElement51 =
+pub const APLUS2_OVER_FOUR: FieldElement51 =
     FieldElement51::from_limbs([121666, 0, 0, 0, 0]);
 
 #[cfg(feature = "digest")]
 /// `MONTGOMERY_A` is equal to 486662, which is a constant of the curve equation
 /// for Curve25519 in its Montgomery form. (This is used internally within the
 /// Elligator map.)
-pub(crate) const MONTGOMERY_A: FieldElement51 = FieldElement51::from_limbs([486662, 0, 0, 0, 0]);
+pub const MONTGOMERY_A: FieldElement51 = FieldElement51::from_limbs([486662, 0, 0, 0, 0]);
 
 #[cfg(feature = "digest")]
 /// `MONTGOMERY_A_NEG` is equal to -486662. (This is used internally within the
 /// Elligator map.)
-pub(crate) const MONTGOMERY_A_NEG: FieldElement51 = FieldElement51::from_limbs([
+pub const MONTGOMERY_A_NEG: FieldElement51 = FieldElement51::from_limbs([
     2251799813198567,
     2251799813685247,
     2251799813685247,
@@ -126,7 +126,7 @@ pub(crate) const MONTGOMERY_A_NEG: FieldElement51 = FieldElement51::from_limbs([
 ]);
 
 /// `L` is the order of base point, i.e. 2^252 + 27742317777372353535851937790883648493
-pub(crate) const L: Scalar52 = Scalar52([
+pub const L: Scalar52 = Scalar52([
     0x0002631a5cf5d3ed,
     0x000dea2f79cd6581,
     0x000000000014def9,
@@ -135,10 +135,10 @@ pub(crate) const L: Scalar52 = Scalar52([
 ]);
 
 /// `L` * `LFACTOR` = -1 (mod 2^52)
-pub(crate) const LFACTOR: u64 = 0x51da312547e1b;
+pub const LFACTOR: u64 = 0x51da312547e1b;
 
 /// `R` = R % L where R = 2^260
-pub(crate) const R: Scalar52 = Scalar52([
+pub const R: Scalar52 = Scalar52([
     0x000f48bd6721e6ed,
     0x0003bab5ac67e45a,
     0x000fffffeb35e51b,
@@ -147,7 +147,7 @@ pub(crate) const R: Scalar52 = Scalar52([
 ]);
 
 /// `RR` = (R^2) % L where R = 2^260
-pub(crate) const RR: Scalar52 = Scalar52([
+pub const RR: Scalar52 = Scalar52([
     0x0009d265e952d13b,
     0x000d63c715bea69f,
     0x0005be65cb687604,
@@ -6304,7 +6304,7 @@ static ED25519_BASEPOINT_TABLE_INNER_DOC_HIDDEN: EdwardsBasepointTable = Edwards
 /// Odd multiples of the basepoint `[B, 3B, 5B, 7B, 9B, 11B, 13B, 15B, ..., 127B]`.
 #[cfg(feature = "precomputed-tables")]
 #[allow(dead_code)]
-pub(crate) const AFFINE_ODD_MULTIPLES_OF_BASEPOINT: NafLookupTable8<AffineNielsPoint> =
+pub const AFFINE_ODD_MULTIPLES_OF_BASEPOINT: NafLookupTable8<AffineNielsPoint> =
     NafLookupTable8([
         AffineNielsPoint {
             y_plus_x: FieldElement51::from_limbs([

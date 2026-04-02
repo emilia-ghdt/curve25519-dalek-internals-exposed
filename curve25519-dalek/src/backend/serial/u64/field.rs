@@ -40,7 +40,7 @@ use zeroize::Zeroize;
 /// The backend-specific type `FieldElement51` should not be used
 /// outside of the `curve25519_dalek::field` module.
 #[derive(Copy, Clone)]
-pub struct FieldElement51(pub(crate) [u64; 5]);
+pub struct FieldElement51(pub [u64; 5]);
 
 impl Debug for FieldElement51 {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
@@ -255,7 +255,7 @@ impl ConditionallySelectable for FieldElement51 {
 }
 
 impl FieldElement51 {
-    pub(crate) const fn from_limbs(limbs: [u64; 5]) -> FieldElement51 {
+    pub const fn from_limbs(limbs: [u64; 5]) -> FieldElement51 {
         FieldElement51(limbs)
     }
 

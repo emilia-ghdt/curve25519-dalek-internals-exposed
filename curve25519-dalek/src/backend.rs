@@ -97,7 +97,7 @@ where
 }
 
 #[cfg(feature = "alloc")]
-pub(crate) enum VartimePrecomputedStraus {
+pub enum VartimePrecomputedStraus {
     #[cfg(curve25519_dalek_backend = "simd")]
     Avx2(vector::scalar_mul::precomputed_straus::spec_avx2::VartimePrecomputedStraus),
     #[cfg(all(curve25519_dalek_backend = "unstable_avx512", nightly))]

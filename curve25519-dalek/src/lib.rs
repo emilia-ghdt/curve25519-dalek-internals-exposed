@@ -80,13 +80,13 @@ pub mod traits;
 //------------------------------------------------------------------------
 
 // Finite field arithmetic mod p = 2^255 - 19
-pub(crate) mod field;
+pub mod field;
 
 // Arithmetic backends (using u32, u64, etc) live here
-#[cfg(docsrs)]
+// #[cfg(docsrs)]
 pub mod backend;
-#[cfg(not(docsrs))]
-pub(crate) mod backend;
+// #[cfg(not(docsrs))]
+// pub(crate) mod backend;
 
 // Generic code for window lookups
 pub(crate) mod window;

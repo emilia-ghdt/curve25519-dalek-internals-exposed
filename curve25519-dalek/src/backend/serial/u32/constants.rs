@@ -25,92 +25,92 @@ use crate::{
 };
 
 /// The value of minus one, equal to `-&FieldElement::ONE`
-pub(crate) const MINUS_ONE: FieldElement2625 = FieldElement2625::from_limbs([
+pub const MINUS_ONE: FieldElement2625 = FieldElement2625::from_limbs([
     67108844, 33554431, 67108863, 33554431, 67108863, 33554431, 67108863, 33554431, 67108863,
     33554431,
 ]);
 
 /// sqrt(-486664)
 #[cfg(feature = "digest")]
-pub(crate) const ED25519_SQRTAM2: FieldElement2625 = FieldElement2625::from_limbs([
+pub const ED25519_SQRTAM2: FieldElement2625 = FieldElement2625::from_limbs([
     54885894, 25242303, 55597453, 9067496, 51808079, 33312638, 25456129, 14121551, 54921728,
     3972023,
 ]);
 
 /// Edwards `d` value, equal to `-121665/121666 mod p`.
-pub(crate) const EDWARDS_D: FieldElement2625 = FieldElement2625::from_limbs([
+pub const EDWARDS_D: FieldElement2625 = FieldElement2625::from_limbs([
     56195235, 13857412, 51736253, 6949390, 114729, 24766616, 60832955, 30306712, 48412415, 21499315,
 ]);
 
 /// Edwards `2*d` value, equal to `2*(-121665/121666) mod p`.
-pub(crate) const EDWARDS_D2: FieldElement2625 = FieldElement2625::from_limbs([
+pub const EDWARDS_D2: FieldElement2625 = FieldElement2625::from_limbs([
     45281625, 27714825, 36363642, 13898781, 229458, 15978800, 54557047, 27058993, 29715967, 9444199,
 ]);
 
 /// One minus edwards `d` value squared, equal to `(1 - (-121665/121666) mod p) pow 2`
-pub(crate) const ONE_MINUS_EDWARDS_D_SQUARED: FieldElement2625 = FieldElement2625::from_limbs([
+pub const ONE_MINUS_EDWARDS_D_SQUARED: FieldElement2625 = FieldElement2625::from_limbs([
     6275446, 16937061, 44170319, 29780721, 11667076, 7397348, 39186143, 1766194, 42675006, 672202,
 ]);
 
 /// Edwards `d` value minus one squared, equal to `(((-121665/121666) mod p) - 1) pow 2`
-pub(crate) const EDWARDS_D_MINUS_ONE_SQUARED: FieldElement2625 = FieldElement2625::from_limbs([
+pub const EDWARDS_D_MINUS_ONE_SQUARED: FieldElement2625 = FieldElement2625::from_limbs([
     15551776, 22456977, 53683765, 23429360, 55212328, 10178283, 40474537, 4729243, 61826754,
     23438029,
 ]);
 
 /// `= sqrt(a*d - 1)`, where `a = -1 (mod p)`, `d` are the Edwards curve parameters.
-pub(crate) const SQRT_AD_MINUS_ONE: FieldElement2625 = FieldElement2625::from_limbs([
+pub const SQRT_AD_MINUS_ONE: FieldElement2625 = FieldElement2625::from_limbs([
     24849947, 33400850, 43495378, 6347714, 46036536, 32887293, 41837720, 18186727, 66238516,
     14525638,
 ]);
 
 /// `= 1/sqrt(a-d)`, where `a = -1 (mod p)`, `d` are the Edwards curve parameters.
-pub(crate) const INVSQRT_A_MINUS_D: FieldElement2625 = FieldElement2625::from_limbs([
+pub const INVSQRT_A_MINUS_D: FieldElement2625 = FieldElement2625::from_limbs([
     6111466, 4156064, 39310137, 12243467, 41204824, 120896, 20826367, 26493656, 6093567, 31568420,
 ]);
 
 /// Precomputed value of one of the square roots of -1 (mod p)
-pub(crate) const SQRT_M1: FieldElement2625 = FieldElement2625::from_limbs([
+pub const SQRT_M1: FieldElement2625 = FieldElement2625::from_limbs([
     34513072, 25610706, 9377949, 3500415, 12389472, 33281959, 41962654, 31548777, 326685, 11406482,
 ]);
 
 /// `APLUS2_OVER_FOUR` is (A+2)/4. (This is used internally within the Montgomery ladder.)
-pub(crate) const APLUS2_OVER_FOUR: FieldElement2625 =
+pub const APLUS2_OVER_FOUR: FieldElement2625 =
     FieldElement2625::from_limbs([121666, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 
 #[cfg(feature = "digest")]
 /// `MONTGOMERY_A` is equal to 486662, which is a constant of the curve equation
 /// for Curve25519 in its Montgomery form. (This is used internally within the
 /// Elligator map.)
-pub(crate) const MONTGOMERY_A: FieldElement2625 =
+pub const MONTGOMERY_A: FieldElement2625 =
     FieldElement2625::from_limbs([486662, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 
 #[cfg(feature = "digest")]
 /// `MONTGOMERY_A_NEG` is equal to -486662. (This is used internally within the
 /// Elligator map.)
-pub(crate) const MONTGOMERY_A_NEG: FieldElement2625 = FieldElement2625::from_limbs([
+pub const MONTGOMERY_A_NEG: FieldElement2625 = FieldElement2625::from_limbs([
     66622183, 33554431, 67108863, 33554431, 67108863, 33554431, 67108863, 33554431, 67108863,
     33554431,
 ]);
 
 /// `L` is the order of base point, i.e. 2^252 +
 /// 27742317777372353535851937790883648493
-pub(crate) const L: Scalar29 = Scalar29([
+pub const L: Scalar29 = Scalar29([
     0x1cf5d3ed, 0x009318d2, 0x1de73596, 0x1df3bd45, 0x0000014d, 0x00000000, 0x00000000, 0x00000000,
     0x00100000,
 ]);
 
 /// `L` * `LFACTOR` = -1 (mod 2^29)
-pub(crate) const LFACTOR: u32 = 0x12547e1b;
+pub const LFACTOR: u32 = 0x12547e1b;
 
 /// `R` = R % L where R = 2^261
-pub(crate) const R: Scalar29 = Scalar29([
+pub const R: Scalar29 = Scalar29([
     0x114df9ed, 0x1a617303, 0x0f7c098c, 0x16793167, 0x1ffd656e, 0x1fffffff, 0x1fffffff, 0x1fffffff,
     0x000fffff,
 ]);
 
 /// `RR` = (R^2) % L where R = 2^261
-pub(crate) const RR: Scalar29 = Scalar29([
+pub const RR: Scalar29 = Scalar29([
     0x0b5f9d12, 0x1e141b17, 0x158d7f3d, 0x143f3757, 0x1972d781, 0x042feb7c, 0x1ceec73d, 0x1e184d1e,
     0x0005046d,
 ]);
@@ -3909,7 +3909,7 @@ static ED25519_BASEPOINT_TABLE_INNER_DOC_HIDDEN: EdwardsBasepointTable = Edwards
 /// Odd multiples of the basepoint `[B, 3B, 5B, 7B, 9B, 11B, 13B, 15B, ..., 127B]`.
 #[cfg(feature = "precomputed-tables")]
 #[allow(dead_code)]
-pub(crate) const AFFINE_ODD_MULTIPLES_OF_BASEPOINT: NafLookupTable8<AffineNielsPoint> =
+pub const AFFINE_ODD_MULTIPLES_OF_BASEPOINT: NafLookupTable8<AffineNielsPoint> =
     NafLookupTable8([
         AffineNielsPoint {
             y_plus_x: FieldElement2625::from_limbs([
